@@ -341,15 +341,12 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.56.0.tgz#ef20350fec605a7f7035a01764731b2de0f3782b"
   integrity sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==
 
-"@hoprnet/hopr-sdk@^2.0.1":
+"@hoprnet/hopr-sdk@../hopr-sdk":
   version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@hoprnet/hopr-sdk/-/hopr-sdk-2.0.1.tgz#69d35f077d3dab7edc354e41c95b59088fa58e2e"
-  integrity sha512-iR9zGHtQDR0UAnTTZZvmUJSQl9QG3nXdpKr0+Doa6U850qlSoPXDmiUMYZHrNowqhJyLtSgm629O9UZQw2/XPw==
   dependencies:
     cross-fetch "^3.1.5"
     debug "^4.3.4"
     isomorphic-ws "^5.0.0"
-    rlp "^3.0.0"
     ws "^8.13.0"
     zod "^3.21.4"
 
@@ -2637,11 +2634,6 @@ rimraf@^3.0.2:
   integrity sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==
   dependencies:
     glob "^7.1.3"
-
-rlp@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/rlp/-/rlp-3.0.0.tgz#5a60725ca4314a3a165feecca1836e4f2c1e2343"
-  integrity sha512-PD6U2PGk6Vq2spfgiWZdomLvRGDreBLxi5jv5M8EpRo3pU6VEm31KO+HFxE18Q3vgqfDrQ9pZA3FP95rkijNKw==
 
 run-parallel@^1.1.9:
   version "1.2.0"
