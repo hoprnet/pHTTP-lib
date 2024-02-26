@@ -26,7 +26,7 @@ export function average(arr: number[]): number {
     return sum / arr.length || 0;
 }
 
-export function isValidURL(url: string) {
+export function isValidUrl(url: string) {
     if ('canParse' in URL) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -60,7 +60,7 @@ export function hexStringToUint8Array(hexString: string) {
     return uint8Array;
 }
 
-export function uint8ArrayToUTF8String(arr: Uint8Array) {
+export function uint8ArrayToUtf8String(arr: Uint8Array) {
     return textDecoder.decode(arr);
 }
 
