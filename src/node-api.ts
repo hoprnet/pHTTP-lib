@@ -1,5 +1,5 @@
-import WebSocket = require('isomorphic-ws');
-
+import type { SendMessagePayloadType } from '@hoprnet/hopr-sdk';
+import { api as HoprAPI } from '@hoprnet/hopr-sdk';
 /**
  * to be replaced with HOPR sdk soon.
  */
@@ -51,11 +51,6 @@ export type PartChannel = {
     balance: string;
 };
 
-export type NodeError = {
-    status: string;
-    error: string;
-};
-
 export type AllChannels = {
     all: Channel[];
     incoming: [];
@@ -78,18 +73,15 @@ export function connectWS(conn: ConnInfo): WebSocket {
 export function sendMessage(
     conn: ConnInfo & { hops?: number; relay?: string },
     { recipient, tag, message }: { recipient: string; tag: number; message: string },
-): Promise<string | NodeError> {
-    const url = new URL('/api/v3/messages', conn.apiEndpoint);
-    const headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'x-auth-token': conn.accessToken,
-    };
-    const payload: Record<string, any> = {
+): Promise<string> {
+    const payload: SendMessagePayloadType = {
+        apiEndpoint: conn.apiEndpoint,
+        apiToken: conn.accessToken,
         body: message,
         peerId: recipient,
         tag,
     };
+
     if (conn.hops === 0) {
         payload.path = [];
     } else {
@@ -100,18 +92,12 @@ export function sendMessage(
             payload.hops = 1;
         }
     }
-    const body = JSON.stringify(payload);
-    return fetch(url, { method: 'POST', headers, body }).then((res) => res.json());
+
+    return HoprAPI.sendMessage(payload);
 }
 
 export function version(conn: ConnInfo) {
-    const url = new URL('/api/v3/node/version', conn.apiEndpoint);
-    const headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'x-auth-token': conn.accessToken,
-    };
-    return fetch(url, { headers }).then((res) => res.json());
+    return HoprAPI.getVersion({ apiEndpoint: conn.apiEndpoint, apiToken: conn.accessToken });
 }
 
 export function retrieveMessages(conn: ConnInfo, tag: number): Promise<{ messages: Message[] }> {
